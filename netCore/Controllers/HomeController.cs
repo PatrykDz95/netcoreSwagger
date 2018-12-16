@@ -26,28 +26,35 @@ namespace netCore.Controllers
 
         //GET api/values/id
         [HttpGet("id")]
-        public Product GetById(int id)
+        public JsonResult GetById(int id)
         {
             Product product = unitOfWork.ProductRepository.GetProduct(id);
-            return product;
+            return Json(product);
         }
 
         //POST api/values
         [HttpPost]
-        public void Post([FromBody] string value)
+        public JsonResult Post(Product product)
         {
+            unitOfWork.ProductRepository.UpdateProduct(product);
+            unitOfWork.Save();
+            return Json(product);
         }
 
         //PUT api/values/id
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
+        public JsonResult Put(Product product)
+        { 
+            unitOfWork.ProductRepository.InsertProduct(product);
+            unitOfWork.Save();
+            return Json(product);       
         }
 
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-           
+            unitOfWork.ProductRepository.DeleteProduct(id);
+            unitOfWork.Save();
         }
     }
 }

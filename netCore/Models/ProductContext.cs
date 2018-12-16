@@ -18,7 +18,7 @@ namespace netCore.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-           
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Products;Trusted_Connection=True;");
         }
     }   
 }
