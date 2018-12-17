@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 using netCore.Models;
@@ -7,7 +8,7 @@ namespace netCore.Models
 {
     public class Feature
     {
-
+        //[System.ComponentModel.DataAnnotations.Key]
         public int Id { get; set; }
         public int ChangeCode { get; set; }
         public string Description { get; set; }
@@ -23,5 +24,9 @@ namespace netCore.Models
         public int ValueDescription { get; set; }
         public int ValueID { get; set; }
 
+        public int ProductForeignKey { get; set; }
+
+        //[ForeignKey("ProductForeignKey")]
+        public virtual Product Products { get; set; }
     }
 }
